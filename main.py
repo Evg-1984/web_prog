@@ -4,10 +4,10 @@ from flask import Flask, render_template, request, make_response, session
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.utils import redirect
 
-from data import db_session
 from data.news import News
 from forms.news import NewsForm
 from data.users import User
+from data import db_session, news_api
 from forms.user import RegisterForm
 from forms.login import LoginForm
 
