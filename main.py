@@ -1,8 +1,10 @@
 import datetime
+import jsonify
 
 from flask import Flask, render_template, request, make_response, session
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.utils import redirect
+from flask import make_response
 
 from data.news import News
 from forms.news import NewsForm
@@ -165,6 +167,16 @@ def news_delete(id):
     else:
         abort(404)
     return redirect('/')
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
+
+
+@app.errorhandler(400)
+def bad_request(_):
+    return make_response(jsonify({'error': 'Bad Request'}), 400)
 
 
 from data import db_session, news_api

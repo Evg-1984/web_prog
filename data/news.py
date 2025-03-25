@@ -2,6 +2,7 @@ import datetime
 import sqlalchemy
 from sqlalchemy import orm
 from .db_session import SqlAlchemyBase
+from sqlalchemy_serializer import SerializerMixin
 
 
 categories = orm.relationship("Category",
@@ -9,7 +10,7 @@ categories = orm.relationship("Category",
                           backref="news")
 
 
-class News(SqlAlchemyBase):
+class News(SqlAlchemyBase, SerializerMixin):
     __tablename__ = 'news'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
