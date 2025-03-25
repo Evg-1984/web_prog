@@ -83,6 +83,5 @@ def edit_news(news_id):
         user_id=news_id,
         is_private=request.json['is_private']
     )
-    db_sess.add(news)
     db_sess.commit()
     return jsonify({'id': news.id})

@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, make_response, session
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from werkzeug.utils import redirect
 from flask import make_response
+from flask_restful import reqparse, abort, Api, Resource
 
 from data.news import News
 from forms.news import NewsForm
@@ -14,7 +15,7 @@ from forms.user import RegisterForm
 from forms.login import LoginForm
 
 app = Flask(__name__)
-app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
+api = Api(app)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 login_manager = LoginManager()
